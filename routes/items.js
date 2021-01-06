@@ -15,9 +15,9 @@ const saveBook = async (req, res, next) => {
     try {
         const body = req.body;
         let book = new Book({
-          author: body.author,
-          title: body.title,
-          description: body.description
+          author: body.author.toLowerCase(),
+          title: body.title.toLowerCase(),
+          description: body.description.toLowerCase()
         });
         const bookSaved = await book.save();
         if (!bookSaved) return res.status(401).json({ status: false, message: "Can't save book." });
